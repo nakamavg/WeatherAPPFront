@@ -2,14 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/meteo-app/server/server.mjs",
-      "use": "@vercel/node"
+      "src": "package.json",
+      "use": "@vercel/ng"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "dist/meteo-app/server/server.mjs"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
