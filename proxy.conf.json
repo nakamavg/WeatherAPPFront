@@ -1,0 +1,7 @@
+{
+	"/api": {
+		"target": "https://backendweatherjava-production.up.railway.app",
+		"secure": false,
+		"changeOrigin": true
+	}
+}
