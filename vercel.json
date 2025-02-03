@@ -20,7 +20,8 @@
       "dest": "/browser/favicon.ico"
     },
     {
-      "handle": "filesystem"
+      "src": "/(.+\\..+)",
+      "dest": "/browser/$1"
     },
     {
       "src": "/(.*)",
