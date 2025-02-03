@@ -8,12 +8,24 @@
         "buildCommand": "npm run build",
         "outputDirectory": "dist/meteo-app/browser"
       }
+    },
+    {
+      "src": "dist/meteo-app/server/server.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/dist/meteo-app/server/server.js"
     }
   ]
 }

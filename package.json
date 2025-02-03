@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node dist/meteo-app/server/server.js",
+    "build": "ng build && ng run meteo-app:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "ng serve --port 4200"
