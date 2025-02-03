@@ -7,7 +7,8 @@
     "build": "ng build && ng run meteo-app:server:production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:meteo-app": "node dist/meteo-app/server/server.mjs"
+    "serve:ssr:meteo-app": "node dist/meteo-app/server/server.mjs",
+    "dev": "ng serve --port 4200"
   },
   "private": true,
   "dependencies": {
