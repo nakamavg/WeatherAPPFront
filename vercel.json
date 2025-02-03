@@ -5,8 +5,8 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "npm run build",
-        "outputDirectory": "dist/meteo-app"
+        "buildCommand": "npx serve dist/meteo-app/browser",
+        "outputDirectory": "dist/meteo-app/browser"
       }
     }
   ],

@@ -3,7 +3,7 @@
   "version": 1,
   "projects": {
     "meteo-app": {
-      "projectType": "application",
+      "projectType": "value",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
