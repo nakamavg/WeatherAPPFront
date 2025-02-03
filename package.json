@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node dist/meteo-app/server/server.mjs",
-    "build": "node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build --configuration production",
+    "build": "ng build && ng run meteo-app:server:production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:meteo-app": "node dist/meteo-app/server/server.mjs"
