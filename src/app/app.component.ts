@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [WeatherService],
 })
 export class AppComponent {
+  title = 'meteo-app';
   city = '';
   weatherData: any;
   errorMessage = '';
