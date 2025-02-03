@@ -2,17 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/node" 
+      "src": "dist/meteo-app/server/main.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/meteo-app/browser",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/browser/(.*)",
+      "dest": "/dist/meteo-app/browser/$1"
     },
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "src": "/(.*)",
+      "dest": "/dist/meteo-app/server/main.js"
     }
   ]
 }
