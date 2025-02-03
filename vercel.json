@@ -2,37 +2,29 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/meteo-app/server/server.mjs",
-      "use": "@vercel/node",
+      "src": "package.json",
+      "use": "@vercel/static-build",
       "config": {
-        "maxLambdaSize": "10mb"
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist/meteo-app"
       }
-    },
-    {
-      "src": "dist/meteo-app/browser/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/meteo-app/browser/assets/$1"
+      "dest": "/browser/assets/$1"
     },
     {
-      "src": "/styles.*\.css",
-      "dest": "/dist/meteo-app/browser/styles-QO6XJXMJ.css"
+      "src": "/favicon.ico",
+      "dest": "/browser/favicon.ico"
     },
     {
-      "src": "/polyfills.*\.js",
-      "dest": "/dist/meteo-app/browser/polyfills-FFHMD2TL.js"
-    },
-    {
-      "src": "/main.*\.js",
-      "dest": "/dist/meteo-app/browser/main-6S2LAKRW.js"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/meteo-app/server/server.mjs"
+      "dest": "/server/server.mjs"
     }
   ]
 }
