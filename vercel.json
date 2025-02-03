@@ -2,22 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "buildCommand": "npx serve dist/meteo-app/browser",
-        "outputDirectory": "dist/meteo-app/browser"
-      }
+      "src": "dist/meteo-app/server/server.mjs",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/browser/assets/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/browser/favicon.ico"
+      "src": "/(.*)",
+      "dest": "dist/meteo-app/server/server.mjs",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+      }
+    }
     },
     {
       "src": "/(.+\\..+)",

@@ -1,21 +1,50 @@
-<!-- src/app/app.component.html -->
-<div class="container">
-  <h1>Aplicación Meteorológica</h1>
-  <input
-    type="text"
-    placeholder="Ingresa una ciudad..."
-    [(ngModel)]="city"
-    (keyup.enter)="searchWeather()"
-  />
-  <button (click)="searchWeather()">Buscar</button>
+<div class="container" [class]="getWeatherClass()">
+  <div *ngIf="weatherData?.description === 'cielo despejado'" class="sun"></div>
+  
+  <div class="moving-clouds">
+    <div class="cloud" *ngFor="let i of [1,2,3]" [style.width]="80 + i * 20 + 'px'" [style.top]="i * 15 + '%'"></div>
+  </div>
+  
+  <div class="torii">
+    <div class="beam top"></div>
+    <div class="beam middle"></div>
+  </div>
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Ingrese una ciudad..."
+      [(ngModel)]="city"
+      (keyup.enter)="searchWeather()"
+      [disabled]="isLoading"
+    />
+    <button (click)="searchWeather()" [disabled]="isLoading">
+      <i class="fas fa-search" *ngIf="!isLoading"></i>
+      <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+    </button>
+  </div>
 
-  <!-- Mostrar mensaje de error -->
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <div *ngIf="errorMessage" class="error">
+    <i class="fas fa-exclamation-circle"></i>
+    {{ errorMessage }}
+  </div>
 
-  <!-- Mostrar datos meteorológicos -->
   <div *ngIf="weatherData" class="weather-info">
     <h2>{{ weatherData.city }}</h2>
-    <p>Temperatura: {{ weatherData.temperature }}°C</p>
-    <p>Descripción: {{ weatherData.description }}</p>
+    <div class="weather-icon">
+      <i [class]="'fas ' + (weatherData.description === 'cielo despejado' ? 'fa-sun' : 
+                     weatherData.description?.includes('nube') ? 'fa-cloud' : 
+                     weatherData.description?.includes('lluvia') ? 'fa-cloud-rain' : 
+                     weatherData.description?.includes('nieve') ? 'fa-snowflake' : 
+                     weatherData.description?.includes('tormenta') ? 'fa-bolt' : 'fa-cloud')"></i>
+    </div>
+    <div class="temperature">{{ weatherData.temperature }}°</div>
+    <p class="description">{{ weatherData.description }}</p>
+  </div>
+
+  <div *ngIf="weatherData?.description?.includes('lluvia')" class="rain-container">
+    <div *ngFor="let drop of raindrops" class="raindrop"
+         [style.left]="drop.left"
+         [style.animation-delay]="drop.animationDelay">
+    </div>
   </div>
 </div>

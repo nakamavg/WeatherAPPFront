@@ -3,7 +3,7 @@
   "version": 1,
   "projects": {
     "meteo-app": {
-      "projectType": "value",
+      "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -22,6 +22,9 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "assets": [
               "src/favicon.ico",
               {
